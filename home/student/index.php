@@ -16,9 +16,19 @@ and open the template in the editor.
             $sql = "SELECT `permitted_faculty`, `project_limit` FROM `students` where `user_id` = ? LIMIT 1";
             $sth = $conn->prepare($sql);
             $sth->execute(array( $_SESSION['user_id']));
-            $res = $sth->fetch();
-            var_dump($res);
-            
+            $res = $sth->fetch(\PDO::FETCH_ASSOC);
+            $avail_faculty = json_decode($res['permitted_faculty']);
+            $avail_faculty = $avail_faculty->faculty;
         ?>
+        <form action="add_project.php" method="post">
+            <select name="faculty">
+                <?php
+                        foreach ($avail_faculty as $value) {
+                            echo "<option value=\"$value\">$value</option>";
+                        }
+                ?>
+            </select>
+            <button type="submit">PROCEED</button>
+        </form>
     </body>
 </html>
