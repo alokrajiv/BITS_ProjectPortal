@@ -30,6 +30,22 @@
 //var_dump($res);
 
 
-$arr = array();
-$arr['faculty'] = array("1112","2231");
-var_dump(json_encode($arr));
+//$arr = array();
+//$arr['faculty'] = array("1112","2231");
+//var_dump(json_encode($arr));
+
+
+$str = '{"faculty":["1112","2231"]}';
+$arr = json_decode($str)->faculty;
+var_dump($arr);
+unset($arr[array_search("2231", $arr)]);
+var_dump($arr);
+echo '<br>';
+$arr1 = array();
+$arr1['faculty'] = $arr;
+$str = json_encode($arr1);
+var_dump($str); 
+$arr =(array) json_decode($str)->faculty;
+var_dump($arr);
+unset($arr[array_search("1112", $arr)]);
+var_dump($arr);
