@@ -8,6 +8,9 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <script src="../../assets/js/jquery.min.js"></script>
+<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="../../assets/js//bootstrap.min.js"></script>
     </head>
     <body>
         <?php
@@ -28,7 +31,7 @@ and open the template in the editor.
                         }
                 ?>
             </select>
-            <button type="submit">PROCEED</button>
+            <button type="submit" class="btn btn-primary">PROCEED</button>
         </form>
     </body>
 </html>

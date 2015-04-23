@@ -1,0 +1,102 @@
+[1mdiff --git a/home/student/handles/add_project_handle.php b/home/student/handles/add_project_handle.php[m
+[1mindex 6bc119b..217949d 100644[m
+[1m--- a/home/student/handles/add_project_handle.php[m
+[1m+++ b/home/student/handles/add_project_handle.php[m
+[36m@@ -15,7 +15,7 @@[m
+     $pos = array_search($_POST['faculty'], $avail_faculty);[m
+    // var_dump($pos);[m
+     //if === is not used will cause trouble as if result is position 0 it is considered as false in ==[m
+[31m-    [m
+[32m+[m[32m    var_dump($_SESSION['user_id']);[m
+     $arr= array();[m
+     $not_found = TRUE;[m
+     foreach ($avail_faculty as $key => $value) {[m
+[36m@@ -28,7 +28,7 @@[m
+         [m
+     }[m
+     if($not_found){[m
+[31m-        die("Faculty hasn't permitted you");[m
+[32m+[m[32m        die("Faculty hasn't permitted you | error code1");[m
+     }[m
+     $export = array();[m
+     $export['faculty']  = $arr;[m
+[36m@@ -44,4 +44,39 @@[m
+     $sql = "UPDATE  `students` SET  `permitted_faculty` =  ? , `projects_allotted` =  ? WHERE  `students`.`user_id` = ?;";[m
+     $sth = $conn->prepare($sql);[m
+     $sth->execute(array( $json, $new_lid ,$_SESSION['user_id']));[m
+[31m-    $res = $sth->fetch(\PDO::FETCH_ASSOC);[m
+\ No newline at end of file[m
+[32m+[m[32m    $res = $sth->fetch(\PDO::FETCH_ASSOC);[m
+[32m+[m[41m    [m
+[32m+[m[41m    [m
+[32m+[m[32m    $sql = "SELECT `permitted_students`, `projects_allotted` FROM `faculty` where `user_id` = ? LIMIT 1";[m
+[32m+[m[32m    $sth = $conn->prepare($sql);[m
+[32m+[m[32m    $sth->execute(array( $_POST['faculty']));[m
+[32m+[m[32m    $res = $sth->fetch(\PDO::FETCH_ASSOC);[m
+[32m+[m[32m     $old_lid=$res['projects_allotted'];[m
+[32m+[m[41m     [m
+[32m+[m[41m     [m
+[32m+[m[32m     $arr= array();[m
+[32m+[m[32m    $not_found = TRUE;[m
+[32m+[m[32m    foreach ($avail_faculty as $key => $value) {[m
+[32m+[m[32m        if($value==$_SESSION['user_id']){[m
+[32m+[m[32m            $not_found = FALSE;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        else{[m
+[32m+[m[32m            array_push($arr, $value);[m
+[32m+[m[32m        }[m
+[32m+[m[41m        [m
+[32m+[m[32m    }[m
+[32m+[m[32m    if($not_found){[m
+[32m+[m[32m        die("Faculty hasn't permitted you | error code 2");[m
+[32m+[m[32m    }[m
+[32m+[m[32m    $export = array();[m
+[32m+[m[32m    $export['faculty']  = $arr;[m
+[32m+[m[32m    $json = json_encode($export);[m
+[32m+[m[41m     [m
+[32m+[m[41m     [m
+[32m+[m[41m     [m
+[32m+[m[32m    $new_lid = rtrim($old_lid.",".$lid, ',');[m
+[32m+[m[32m    $sql = "UPDATE  `faculty` SET  `permitted_students` =  ? , `projects_allotted` =  ? WHERE  `students`.`user_id` = ?;";[m
+[32m+[m[32m    $sth = $conn->prepare($sql);[m
+[32m+[m[32m    $sth->execute(array( $json, $new_lid ,$_POST['faculty']));[m
+[32m+[m[32m    $res = $sth->fetch(\PDO::FETCH_ASSOC);[m
+[41m+     [m
+\ No newline at end of file[m
+[1mdiff --git a/home/student/index.php b/home/student/index.php[m
+[1mindex f26ee47..81d268e 100644[m
+[1m--- a/home/student/index.php[m
+[1m+++ b/home/student/index.php[m
+[36m@@ -8,6 +8,9 @@[m [mand open the template in the editor.[m
+     <head>[m
+         <meta charset="UTF-8">[m
+         <title></title>[m
+[32m+[m[32m        <script src="../../assets/js/jquery.min.js"></script>[m
+[32m+[m[32m<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />[m
+[32m+[m[32m<script src="../../assets/js//bootstrap.min.js"></script>[m
+     </head>[m
+     <body>[m
+         <?php[m
+[36m@@ -28,7 +31,7 @@[m [mand open the template in the editor.[m
+                         }[m
+                 ?>[m
+             </select>[m
+[31m-            <button type="submit">PROCEED</button>[m
+[32m+[m[32m            <button type="submit" class="btn btn-primary">PROCEED</button>[m
+         </form>[m
+     </body>[m
+ </html>[m
+[1mdiff --git a/login.php b/login.php[m
+[1mindex 9eddc5c..4722341 100644[m
+[1m--- a/login.php[m
+[1m+++ b/login.php[m
+[36m@@ -3,7 +3,8 @@[m
+ <link href="./assets/css/custom.css" rel="stylesheet" type="text/css" />[m
+ <script src="./assets/js/jquery.min.js"></script>[m
+ <link href="./assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />[m
+[31m-<script src="./assets/js//bootstrap.min.js"></script><script src="//code.jquery.com/jquery-2.1.1.min.js"></script><section id="login">[m
+[32m+[m[32m<script src="./assets/js//bootstrap.min.js"></script>[m
+[32m+[m[32m<section id="login">[m
+     <div class="container">[m
+     	<div class="row">[m
+     	    <div class="col-xs-12">[m

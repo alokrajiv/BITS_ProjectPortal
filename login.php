@@ -3,7 +3,8 @@
 <link href="./assets/css/custom.css" rel="stylesheet" type="text/css" />
 <script src="./assets/js/jquery.min.js"></script>
 <link href="./assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="./assets/js//bootstrap.min.js"></script><script src="//code.jquery.com/jquery-2.1.1.min.js"></script><section id="login">
+<script src="./assets/js//bootstrap.min.js"></script>
+<section id="login">
     <div class="container">
     	<div class="row">
     	    <div class="col-xs-12">

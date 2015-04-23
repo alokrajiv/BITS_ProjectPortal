@@ -15,7 +15,7 @@
     $pos = array_search($_POST['faculty'], $avail_faculty);
    // var_dump($pos);
     //if === is not used will cause trouble as if result is position 0 it is considered as false in ==
-    
+    var_dump($_SESSION['user_id']);
     $arr= array();
     $not_found = TRUE;
     foreach ($avail_faculty as $key => $value) {
@@ -28,7 +28,7 @@
         
     }
     if($not_found){
-        die("Faculty hasn't permitted you");
+        die("Faculty hasn't permitted you | error code1");
     }
     $export = array();
     $export['faculty']  = $arr;
@@ -45,3 +45,38 @@
     $sth = $conn->prepare($sql);
     $sth->execute(array( $json, $new_lid ,$_SESSION['user_id']));
     $res = $sth->fetch(\PDO::FETCH_ASSOC);
+    
+    
+    $sql = "SELECT `permitted_students`, `projects_allotted` FROM `faculty` where `user_id` = ? LIMIT 1";
+    $sth = $conn->prepare($sql);
+    $sth->execute(array( $_POST['faculty']));
+    $res = $sth->fetch(\PDO::FETCH_ASSOC);
+     $old_lid=$res['projects_allotted'];
+     
+     
+     $arr= array();
+    $not_found = TRUE;
+    foreach ($avail_faculty as $key => $value) {
+        if($value==$_SESSION['user_id']){
+            $not_found = FALSE;
+        }
+        else{
+            array_push($arr, $value);
+        }
+        
+    }
+    if($not_found){
+        die("Faculty hasn't permitted you | error code 2");
+    }
+    $export = array();
+    $export['faculty']  = $arr;
+    $json = json_encode($export);
+     
+     
+     
+    $new_lid = rtrim($old_lid.",".$lid, ',');
+    $sql = "UPDATE  `faculty` SET  `permitted_students` =  ? , `projects_allotted` =  ? WHERE  `students`.`user_id` = ?;";
+    $sth = $conn->prepare($sql);
+    $sth->execute(array( $json, $new_lid ,$_POST['faculty']));
+    $res = $sth->fetch(\PDO::FETCH_ASSOC);
+     
