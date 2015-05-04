@@ -10,12 +10,9 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        hello sir/ma'm,
-        <br>
-        <a href="add_student.php">Invite A Student to Join</a>
-        <br>
-        <a href="current_projects.php">Current Projects</a>
-        <br>
-        <a href="current_invited.php">Current Invited</a>
+        <?php
+                session_destroy();
+                header('/BITS_ProjectPortal/');
+        ?>
     </body>
 </html>

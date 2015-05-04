@@ -8,4 +8,3 @@ $sql = "
         ";
 $sth = $conn->prepare($sql);
 $sth->execute(array( $_SESSION['cached_users_data']['ucid'], $student_ucid));
-$res = $sth->fetch();

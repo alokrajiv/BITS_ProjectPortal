@@ -1,4 +1,17 @@
-
+<?php
+session_start();
+if(isset($_SESSION['cached_users_data'])){
+     if( substr($_SESSION['cached_users_data']['designation'], 0, 3) == 'STU'){
+        header("Location: /BITS_ProjectPortal/student/");
+    }
+    else  if( substr($_SESSION['cached_users_data']['designation'], 0, 3) == 'FAC'){
+        header("Location: /BITS_ProjectPortal/faculty/");
+    }
+ else {
+        die("unknown session data");
+    }
+}
+?>
 <script src="./assets/js/custom.js"></script>
 <link href="./assets/css/custom.css" rel="stylesheet" type="text/css" />
 <script src="./assets/js/jquery.min.js"></script>

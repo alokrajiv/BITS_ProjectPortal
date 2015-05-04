@@ -10,25 +10,30 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        Click:<br>
         <?php
-                session_start();
                 require '../configs/auto_config.php';
-                 $sql = "
-                        SELECT `prefix`,`fname`,`mname`,`lname`,`invite_id` FROM  `users_data` LEFT JOIN `pp_invites` ON `ucid`=`faculty` WHERE `status`='LIVE' AND `student` =?
+                session_start();
+                $sql = "
+                        SELECT `prefix`,`fname`,`mname`,`lname` FROM  `users_data` LEFT JOIN `pp_invites` ON `ucid`=`student` WHERE `status`='LIVE' AND `faculty` =?
                         ";
                 $sth = $conn->prepare($sql);
                 $sth->execute(array($_SESSION['cached_users_data']['ucid']));
                 $res = $sth->fetchall();
-                echo '<ul>';
+                
+        ?>
+        <?php
+                //LAKSHAY TOT EDIT
+                echo '<table border="1">';
                 $count = 1;
                 foreach ($res as $key => $value) {
-                        $faculty_name = $value['prefix'].' '.$value['fname'].' '.$value['mname'].' '.$value['lname'];
-                        $invite_id = $value['invite_id'];
-                        echo "<li><a href='add_project.php?invite_id=$invite_id'>$faculty_name</a></li>";
+                        echo "<tr><td>$count</td>";
+                        $student_name = $value['prefix'].' '.$value['fname'].' '.$value['mname'].' '.$value['lname'];
+
+                        echo "<td>$student_name</td>";
+                        echo "</tr>";
                         $count++;
                 }
-                echo '</ul>';
+                echo '</table>';
         ?>
     </body>
 </html>
