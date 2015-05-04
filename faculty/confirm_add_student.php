@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-                require '../configs/auto_config.php';
+<?php $base_url = '..';  
+            require $base_url.'/assets/template/header.php';
+            require $base_url.'/assets/template/nav.php';
+            require $base_url.'/configs/auto_config.php';
                 $student_uhid = $_POST['student_uhid'];
                 $sql = "
                         SELECT * FROM  `users_data` WHERE  `uhid` LIKE  ? ;
@@ -28,5 +18,5 @@ and open the template in the editor.
             <input type="hidden" name="student_ucid" value="<?=$student_ucid ?>">
             <button type="submit">CONFIRM</button>
         </form>
-    </body>
-</html>
+       <?php
+      require $base_url.'/assets/template/footer.php';

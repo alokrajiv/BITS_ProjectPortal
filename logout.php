@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
+<?php $base_url = '.';  
+            require $base_url.'/assets/template/header.php';
+            require $base_url.'/assets/template/nav.php';
+                require './configs/auto_config.php';
                 session_destroy();
-                header('/BITS_ProjectPortal/');
-        ?>
-    </body>
-</html>
+                header('Location: logout_success.php');
+                echo "<h3>Logged out.</h3>";
+                
+            require $base_url.'/assets/template/footer.php';

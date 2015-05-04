@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-            require './configs/db_config.php';
+<?php $base_url = '.';  
+            require $base_url.'/assets/template/header.php';
+            require $base_url.'/assets/template/nav.php';
+            require $base_url.'/configs/auto_config.php';
             
             echo '<a href="login.php">Login</a>';
-        ?>
-    </body>
-</html>
+            require $base_url.'/assets/template/footer.php';

@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-                 require '../configs/auto_config.php';
-                session_start();
+<?php $base_url = '..';  
+            require $base_url.'/assets/template/header.php';
+            require $base_url.'/assets/template/nav.php';
+            require $base_url.'/configs/auto_config.php';
                 $sql = "    
                         SELECT * FROM  `pp_invites` WHERE  `status`='LIVE' AND `invite_id` =?
                         ";
@@ -41,5 +30,5 @@ and open the template in the editor.
                 <br>Scope:<textarea id="scope" name="scope" ></textarea>
                 <br><button type="submit">SUBMIT</button>
         </form>
-    </body>
-</html>
+<?php
+      require $base_url.'/assets/template/footer.php';

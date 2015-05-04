@@ -1,4 +1,7 @@
-<?php
+<?php $base_url = '.';  
+
+require $base_url.'/assets/template/header.php';
+require $base_url.'/assets/template/nav.php';
 session_start();
 if(isset($_SESSION['cached_users_data'])){
      if( substr($_SESSION['cached_users_data']['designation'], 0, 3) == 'STU'){
@@ -14,9 +17,6 @@ if(isset($_SESSION['cached_users_data'])){
 ?>
 <script src="./assets/js/custom.js"></script>
 <link href="./assets/css/custom.css" rel="stylesheet" type="text/css" />
-<script src="./assets/js/jquery.min.js"></script>
-<link href="./assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="./assets/js//bootstrap.min.js"></script>
 <section id="login">
     <div class="container">
     	<div class="row">
@@ -71,8 +71,10 @@ if(isset($_SESSION['cached_users_data'])){
         <div class="row">
             <div class="col-xs-12">
                 <p>Page © - 2015</p>
-                <p>Powered by <strong><a href="http://www.alokrajiv.com" target="_blank">Alok Rajiv</a></strong></p>
+                <p>Powered by <strong><a href="http://www.alokrajiv.com" target="_blank">alokrajiv.com</a></strong></p>
             </div>
         </div>
     </div>
 </footer>
+
+  <?php          require $base_url.'/assets/template/footer.php';

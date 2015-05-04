@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/alokrajiv/MyProjects/BITS_ProjectPortal/faculty/handles/add_student_handle.php</file>
-            <file>file:/home/alokrajiv/MyProjects/BITS_ProjectPortal/faculty/add_student.php</file>
-            <file>file:/home/alokrajiv/MyProjects/BITS_ProjectPortal/faculty/confirm_add_student.php</file>
-            <file>file:/home/alokrajiv/MyProjects/BITS_ProjectPortal/faculty/current_projects.php</file>
+            <file>file:/home/alokrajiv/MyProjects/BITS_ProjectPortal/logout.php</file>
+            <file>file:/home/alokrajiv/MyProjects/BITS_ProjectPortal/handles/login_handle.php</file>
             <file>file:/home/alokrajiv/MyProjects/BITS_ProjectPortal/faculty/index.php</file>
+            <file>file:/home/alokrajiv/MyProjects/BITS_ProjectPortal/login.php</file>
+            <file>file:/home/alokrajiv/MyProjects/BITS_ProjectPortal/home/index.php</file>
+            <file>file:/home/alokrajiv/MyProjects/BITS_ProjectPortal/password_reset.php</file>
         </group>
     </open-files>
 </project-private>

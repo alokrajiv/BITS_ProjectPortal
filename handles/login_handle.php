@@ -14,6 +14,7 @@ $hashedPasswordFromDB = $res["password"];
 if (password_verify($passwordFromPost, $hashedPasswordFromDB)) {
     echo 'Password is valid!';
     session_start();
+    $res['fullname'] = $res['prefix'].' '.$res['fname'].' '.$res['mname'].' '.$res['lname'];
     $_SESSION['cached_users_data']= $res;
     if( substr($_SESSION['cached_users_data']['designation'], 0, 3) == 'STU'){
         header("Location: ../student/");

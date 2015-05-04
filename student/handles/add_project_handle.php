@@ -1,6 +1,7 @@
-<?php
-require '../../configs/auto_config.php';
-session_start();
+<?php $base_url = '../..';  
+            require $base_url.'/assets/template/header.php';
+            require $base_url.'/assets/template/nav.php';
+            require $base_url.'/configs/auto_config.php';
 $sql = "    
         SELECT * FROM  `pp_invites` WHERE  `status`='LIVE' AND `invite_id` =?
         ";
@@ -39,3 +40,4 @@ $sql = "
         ";
 $sth = $conn->prepare($sql);
 $sth->execute(array($_POST['invite_id']));
+header("Location: /BITS_ProjectPortal/home");
