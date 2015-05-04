@@ -1,3 +1,3 @@
 <?php
 
-require '/home/alokrajiv/configs/db_config.php';
+require '/home/alokrajiv/configs/bpdc/db_config.php';
